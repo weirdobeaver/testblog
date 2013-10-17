@@ -29,6 +29,7 @@ group :development do
   gem 'hub', require: nil
   gem 'yell-rails'
   gem 'pry'
+  gem "therubyracer", "~> 0.12.0"
 end
 
 group :development, :test do
