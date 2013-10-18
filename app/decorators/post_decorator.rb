@@ -6,6 +6,10 @@ class PostDecorator < Draper::Decorator
     title.gsub(' ', '-').downcase
   end
 
+  def friendly_date
+  	created_at.to_formatted_s(:day_month_year)
+  end
+
   def truncated_body
     h.raw h.truncate(body, length: 200, omission: "...")
   end
