@@ -10,3 +10,7 @@
   .post__tags-list.tagsinput
     - post.tags_array.each do |tag|
       = content_tag :span, tag, class: 'tag'
+  .post_comments
+    - post.comments.each do |comment|
+      = comment.body
+    
