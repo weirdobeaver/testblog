@@ -7,8 +7,7 @@ class Comment
   validates_presence_of :body
 
   belongs_to :user
-
-  embedded_in :post
+  belongs_to :post
 
 
 end

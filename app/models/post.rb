@@ -9,7 +9,7 @@ class Post
 
   validates_presence_of :body, :title
 
-  embeds_many :comments
+  has_many :comments
 
   belongs_to :user
 
