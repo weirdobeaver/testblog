@@ -1,8 +1,8 @@
 class VotesController < ApplicationController
 	def create
-		vote = Vote.new(comment: current_comment,
+		vote = Vote.new(comment_id: params[:vote][:comment_id],
 										user: current_user,
-										value: 1)
+										value: params[:vote][:value])
 		vote.save
 	end
 end

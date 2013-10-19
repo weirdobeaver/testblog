@@ -28,6 +28,7 @@ class PostsController < ApplicationController
 
   def show
     @comment = Comment.new
+    @vote = Vote.new
   end
 
   def mark_archived

@@ -6,4 +6,6 @@ class Vote
 
 	field :value, type: Integer
 
+	validates_inclusion_of :value, in: [1, -1], allow_blank: false
+
 end
