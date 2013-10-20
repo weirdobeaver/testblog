@@ -13,7 +13,7 @@
   %br
   .post_comments
     - post.comments.each do |comment|
-      - next if comment.abusive 
+      - next if comment.abusive && current_user != post.user
       %p 
         Comment author:
         = comment.user.name
