@@ -26,7 +26,12 @@
       = simple_form_for @vote, html: { class: "form-horizontal" } do |f|
         = f.input :value, as: :hidden, input_html: { value: 1 }
         = f.input :comment_id, as: :hidden, input_html: { value: comment.id }
-        = f.button :submit
+        = f.button :submit, "Vote up"
+
+      = simple_form_for @vote, html: { class: "form-horizontal" } do |f|
+        = f.input :value, as: :hidden, input_html: { value: -1 }
+        = f.input :comment_id, as: :hidden, input_html: { value: comment.id }
+        = f.button :submit, "Vote down"
 
       %br
       
