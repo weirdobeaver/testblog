@@ -3,6 +3,7 @@ class Comment
   include Mongoid::Timestamps
 	
   field :body, type: String
+  field :abusive, type: Boolean
 
   validates_presence_of :body
 
@@ -18,4 +19,21 @@ class Comment
   	end
   	votes_count
   end
+
+  def negative_votes_count
+  	negative_votes = 0
+  	votes.each do |vote|
+  		if vote.value == -1
+  			negative_votes = negative_votes + 1
+  		end
+  	end
+  	negative_votes
+  end
+
+  def check_abusiveness
+		if abusive.nil? && negative_votes_count >= 3
+			self.abusive = true
+			save
+		end
+	end
 end

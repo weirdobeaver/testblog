@@ -8,4 +8,11 @@ class Vote
 
 	validates_inclusion_of :value, in: [1, -1], allow_blank: false
 
+	after_create :check_abusiveness
+
+	def check_abusiveness
+		comment.check_abusiveness
+	end
+
+	
 end
