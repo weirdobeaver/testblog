@@ -11,4 +11,11 @@ class Comment
 
   has_many :votes
 
+  def votes_value
+  	votes_count = 0
+  	votes.each do |vote|
+  		votes_count = votes_count + vote.value
+  	end
+  	votes_count
+  end
 end
