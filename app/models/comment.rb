@@ -4,8 +4,10 @@ class Comment
 	
   field :body, type: String
   field :abusive, type: Boolean
+  field :vote_uniqueness, type: Boolean
 
   validates_presence_of :body
+  #validates :vote_uniqueness. value:true
 
   belongs_to :user
   belongs_to :post
@@ -36,4 +38,11 @@ class Comment
 			save
 		end
 	end
+
+	def check_user_uniqueness
+		if Vote.where(user_id: user_id, comment_id: comment_id).exists?
+			self.vote_uniqueness = false
+		end
+	end
+
 end

@@ -30,15 +30,15 @@
         Comment value:
         = comment.votes_value
       %br
-      = simple_form_for @vote, html: { class: "form-horizontal" } do |f|
-        = f.input :value, as: :hidden, input_html: { value: 1 }
-        = f.input :comment_id, as: :hidden, input_html: { value: comment.id }
-        = f.button :submit, "Vote up"
-
-      = simple_form_for @vote, html: { class: "form-horizontal" } do |f|
-        = f.input :value, as: :hidden, input_html: { value: -1 }
-        = f.input :comment_id, as: :hidden, input_html: { value: comment.id }
-        = f.button :submit, "Vote down"
+      - unless Vote.where(user_id: current_user, comment_id: comment).exists?
+        = simple_form_for @vote, html: { class: "form-horizontal" } do |f|
+          = f.input :value, as: :hidden, input_html: { value: 1 }
+          = f.input :comment_id, as: :hidden, input_html: { value: comment.id }
+          = f.button :submit, "Vote up"
+        = simple_form_for @vote, html: { class: "form-horizontal" } do |f|
+          = f.input :value, as: :hidden, input_html: { value: -1 }
+          = f.input :comment_id, as: :hidden, input_html: { value: comment.id }
+          = f.button :submit, "Vote down"
 
       %br
       

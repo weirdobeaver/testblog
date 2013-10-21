@@ -7,6 +7,7 @@ class Vote
 	field :value, type: Integer
 
 	validates_inclusion_of :value, in: [1, -1], allow_blank: false
+	validate :check_user_uniqueness
 
 	after_create :check_abusiveness
 
@@ -14,5 +15,9 @@ class Vote
 		comment.check_abusiveness
 	end
 
-	
+	def check_user_uniqueness
+		if Vote.where(user_id: user_id, comment_id: comment_id).exists?
+			errors.add(:user_id, "You can't vote twice, notty, notty.")
+		end
+	end	
 end
