@@ -13,7 +13,13 @@
   %br
   .post_comments
     - post.comments.each do |comment|
-      - next if comment.abusive && current_user != post.user
+      - if comment.abusive && current_user != post.user 
+        next
+      - elsif comment.abusive && current_user == post.user
+        = simple_form_for comment, html: { class: "form-horizontal" } do |f|
+          = f.input :abusive, as: :hidden, input_html: { value: false }
+          = f.button :submit, "Unmark as abusive"
+
       %p 
         Comment author:
         = comment.user.name
