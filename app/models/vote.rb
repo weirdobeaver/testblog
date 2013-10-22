@@ -7,7 +7,7 @@ class Vote
 	field :value, type: Integer
 
 	validates_inclusion_of :value, in: [1, -1], allow_blank: false
-	validate :check_user_uniqueness
+	validate :check_user_uniqueness, on: :create
 
 	after_create :check_abusiveness
 

@@ -3,11 +3,10 @@ class Comment
   include Mongoid::Timestamps
 	
   field :body, type: String
-  field :abusive, type: Boolean
+  field :abusive, type: Boolean, default: false
   field :vote_uniqueness, type: Boolean
 
   validates_presence_of :body
-  #validates :vote_uniqueness. value:true
 
   belongs_to :user
   belongs_to :post
@@ -33,16 +32,11 @@ class Comment
   end
 
   def check_abusiveness
-		if abusive.nil? && negative_votes_count >= 3
+		if negative_votes_count == 3
 			self.abusive = true
 			save
 		end
 	end
 
-	def check_user_uniqueness
-		if Vote.where(user_id: user_id, comment_id: comment_id).exists?
-			self.vote_uniqueness = false
-		end
-	end
 
 end
