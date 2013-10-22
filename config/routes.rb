@@ -10,6 +10,10 @@ Easyblog::Application.routes.draw do
       post :mark_archived
     end
   end
-  resources :comments
+  resources :comments do
+    member do
+      put :mark_as_not_abusive
+    end
+  end
   resources :votes  
 end

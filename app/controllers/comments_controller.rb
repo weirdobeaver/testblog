@@ -7,9 +7,9 @@ class CommentsController < ApplicationController
 	  redirect_to post_path(comment.post)
 	end
 
-	def update
+	def mark_as_not_abusive
 		comment = Comment.find(params[:id])
-		comment.abusive = params[:comment][:abusive]
+		comment.abusive = false
 		comment.save
 		redirect_to post_path(comment.post)
 	end
